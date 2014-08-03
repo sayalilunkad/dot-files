@@ -1,0 +1,22 @@
+# Ignore all files & folders
+!*vim*
+
+# Do not ignore the following files
+
+# Zsh Files
+!.zshrc
+
+# Vim Files
+!.vimrc
+
+# Custom Init Script to initialize various repos
+!.init
+
+# Git Files
+!.gitconfig
+
+# Ignore .ropeproject
+.ropeproject/*
+
+# Do not ignore the following folders
+

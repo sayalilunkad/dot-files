@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Install/submodule add -f Oh My Zsh by Robby Russel
+wget --no-check-certificate http://install.ohmyz.sh -O - | sh
+
+ Install Vundle https://github.com/gmarik/Vundle.vim
+git clone git://github.com/gmarik/vundle.git $target/.vim/bundle/vundle
+
+vim +BundleInstall! +qall #2&> /dev/null
+
+
+bash $target/.vim/bundle/YouCompleteMe/install.sh
+
+
+# Get OpenStack Repository information by download the given file
+wget http://git.openstack.org/cgit/openstack/governance/plain/reference/programs.yaml
+
+# Call Python program to initialize various git submodules as described by
+# programs.yaml
+python $base_dir/install/init-git-repos.py $target
+
+rm -rf $base_dir/programs.yaml
