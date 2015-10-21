@@ -1,461 +1,473 @@
-" My .vimrc -- dguitarbite (dguitarbite@gmail.com)
-" github.com/dguitarbite/dguitarbite
+" Vundle
 
-" ============================================
-" Note to myself:
-" Use vim or die
-" ============================================
+    " Pre-Configuration
+        set nocompatible              " Switch off vi backwards compatability
+        filetype off                  " I wanna use Vundle
 
-set nocompatible              " be iMproved, required
-filetype off                  " Required for Vundle
+    " set the runtime path to include Vundle and initialize
+        set rtp+=$HOME/.vim/bundle/Vundle.vim
 
-" set the runtime path to include Vundle and initialize
-set rtp+=$HOME/.vim/bundle/vundle
-call vundle#begin()         " Start Vundle Plugin Configuration
+    " Install Vim Plugins
+        call vundle#begin()         " Start Vundle Plugin Configuration
+            Plugin 'gmarik/Vundle.vim'
+            " Git wrapper
+            Plugin 'tpope/vim-fugitive'
+            " Automated tag generation and syntax highlighting
+            Plugin 'xolox/vim-easytags'
+            " Syntax checker
+            Plugin 'scrooloose/syntastic'
+            " Utility functions
+            Plugin 'tomtom/tlib_vim'
+            " Keyword completion
+            Plugin 'Shougo/neocomplete'
+            " Status tabline
+            Plugin 'bling/vim-airline'
+            " Full patch fuzzy file, buffer, mru, tag finder for Vim
+            Plugin 'kien/ctrlp.vim'
+            " Python
+            Plugin 'klen/python-mode'
+            " Time tracker
+            Plugin 'TimeTap'
+            " Strips white spaces
+            Plugin 'StripWhiteSpaces'
+            " Python unittests
+            Plugin 'pyunit.vim'
+            " Runs make
+            Plugin 'reinh/vim-makegreen'
+            " Rails
+            Plugin 'tpope/vim-rails'
+            "Ruby
+            Plugin 'vim-ruby/vim-ruby'
+            " Cucumber
+            Plugin 'tpope/vim-cucumber'
+            " Auto closetag for xml files
+            Plugin 'closetag.vim'
+            " Visualise vim undo tree
+            Plugin 'Gundo'
+            " Flake8
+            Plugin 'vim-flake8'
+            " Misc
+            Plugin 'vim-misc'
+            " Shows insertion or deletion of line
+            Plugin 'jisaacks/GitGutter'
+            " Filesystem
+            Plugin 'scrooloose/nerdtree'
+            " Toggle mouse focus with F12
+            Plugin 'nvie/vim-togglemouse'
+            " Autocompletion
+            Plugin 'davidhalter/jedi-vim'
+            " Commenting
+            Plugin 'scrooloose/nerdcommenter'
+            " ack
+            Plugin 'ggreer/the_silver_searcher'
+            " Multiple cursor
+            Plugin 'terryma/vim-multiple-cursors'
+            " Takes notes in rst
+            Plugin 'Rykka/riv.vim'
+            " C/C++
+            Plugin 'c.vim'
+            " Awk
+            Plugin 'awk-support.vim'
+            " Bash
+            Plugin 'bash-support.vim'
+            " Pydoc
+            Plugin 'fs111/pydoc.vim'
+        call vundle#end()            " End Vundle Plugin Configuration
 
-    " To add plugins, add the entries inside the vundle#begin/end block.
-    " Syntax : Plugin '<author-name>/<repo-name>' For Github
-    "        : Plugin '<complete URL to git repo>' For git repo
-    "        : Plugin '<author>/<repo>, {'rtp': '$path/folder name'} rename
-    "        : Plugin '<plugin-name>' If its a vim script like on vim-scripts.org
-
-    " let Vundle manage Vundle
-    Plugin 'gmarik/Vundle.vim'
-
-    " Install Puppet Modules for Vim - https://github.com/rodjek/vim-puppet
-    Plugin 'rodjek/vim-puppet'
-
-    " Install Syntastic https://github.com/scrooloose/syntastic
-    Plugin 'scrooloose/syntastic'
-
-    " Install Fugitive https://github.com/tpope/vim-fugitive
-    Plugin 'tpope/vim-fugitive'
-
-    " Install Tabular - https://github.com/godlygeek/tabular
-    Plugin 'godlygeek/tabular'
-
-    " For Snipmate - Various Libraries required
-    " https://github.com/tomtom/tlib_vim
-    " https://github.com/MarcWeber/vim-addon-mw-utils.git
-    Plugin 'tomtom/tlib_vim'
-    Plugin 'MarcWeber/vim-addon-mw-utils'
-
-    " Install Snipmate - https://github.com/garbas/vim-snipmate
-    Plugin 'garbas/vim-snipmate'
-
-    " Install a few snippets for snipmate https://github.com/honza/vim-snippets.git
-    Plugin 'honza/vim-snippets'
-
-    " More Pythonic Snippet https://github.com/SirVer/ultisnips
-    Plugin 'SirVer/ultisnips'
-
-    " Auto-Complete -- https://github.com/Valloric/YouCompleteMe (used by ultisnips)
-    Plugin 'Valloric/YouCompleteMe'
-
-    " Neo Complete https://github.com/Shougo/neocomplete.vim
-    Plugin 'Shougo/neocomplete'
-
-    " Install Status Plugin - Powerline https://github.com/Lokaltog/powerline
-    Plugin 'Lokaltog/powerline'
-
-    " Install CtrlP - https://github.com/kien/ctrlp.vim
-    Plugin 'kien/ctrlp.vim'
-
-    " Install Python Mode :: https://github.com/klen/python-mode
-    Plugin 'klen/python-mode'
-
-    " Install Licence Loader
-    Plugin 'license-loader'
-
-    " Time Tap
-    Plugin 'TimeTap'
-
-    " Maven Plugin
-    Plugin 'maven-plugin'
-
-    " Strip White Spaces at the end of lines
-    Plugin 'StripWhiteSpaces'
-
-    " Python Unit tests and MakeGreen bar
-    Plugin 'pyunit.vim'
-    Plugin 'reinh/vim-makegreen'
-
-    " DocBook
-    Plugin 'docbook44'
-
-    " DocBook Helper
-    Plugin 'docbkhelper'
-
-    " Python Tools
-    Plugin 'python-tools'
-
-    " Python.vim
-    Plugin 'python.vim'
-
-    " All of your Plugins must be added before the following line
-call vundle#end()            " End Vundle Plugin Configuration
-
-filetype plugin indent on
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
+    " Post-Configuration
+        filetype on
+        filetype plugin indent on
 
 
-" Background type
-set background=dark
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sets how many lines of history VIM has to remember
+set history=500
+set number
 
-" detect encoding
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
-" Configure CloseTag for XML/HTML only
-autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
-autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+" Set to auto read when a file is changed from the outside
+set autoread
 
-
-" Set indents,tabs as per languages
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-
-
-" Keybindings for plugin toggle
-nnoremap <F4> :set invpaste paste?<CR>
-set pastetoggle=<F5>
-nmap <F6> :TagbarToggle<cr>
-nmap <F7> :NERDTreeToggle<cr>
-nmap <F8> :GundoToggle<cr>
-nmap <F9> :IndentGuidesToggle<cr>
-nmap <D-/> :
-nnoremap <leader>a :Ack
-nnoremap <leader>v V`]
-
-set clipboard=unnamed
-
-" Save in sudo mode
-" w!! to sudo & write a file
-cmap w!! %!sudo tee >/dev/null %
-
-" Mouse and backspace
-set mouse=a
-
-
-" Spellings (I do a lot of spelling mistakes)
-nmap <silent> <leader>p :set spell<CR>
-nmap <silent> <leader>P :set spell!<CR>
-
-
-" Rebind <Leader> key
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
 let mapleader = ","
+let g:mapleader = ","
 
+" Fast saving
+nmap <leader>w :w!<cr>
 
-" Removes highlight of your last search
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
 
+set nofoldenable    " disable folding
 
-" Quicksave command
-noremap <C-Z> :update<CR>
-vnoremap <C-Z> <C-C>:update<CR>
-inoremap <C-Z> <C-O>:update<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
 
+" Avoid garbled characters in Chinese language windows OS
+let $LANG='en'
+set langmenu=en
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
 
-" Quick quit command
-noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E :qa!<CR>   " Quit all windows
+" Turn on the WiLd menu
+set wildmenu
 
-" Stop using arrow keys, learn VIM better ... lot better!
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+else
+    set wildignore+=.git\*,.hg\*,.svn\*
+endif
 
-" Bind Ctrl+<movement> keys to move around the windows
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+"Always show current position
+set ruler
 
-" Easier moving between tabs
-map <Leader>N <esc>:tabprevious<CR>
-map <Leader>M <esc>:tabnext<CR>
+" Height of the command bar
+set cmdheight=2
 
+" A buffer becomes hidden when it is abandoned
+set hid
 
-" easy-motion
-let g:EasyMotion_leader_key = '<Leader>'
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
-" Tagbar
-let g:tagbar_left=1
-let g:tagbar_width=30
-let g:tagbar_autofocus = 1
-let g:tagbar_sort = 0
-let g:tagbar_compact = 1
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
 
-" NERDTree
-let NERDChristmasTree=0
-let NERDTreeWinSize=30
-let NERDTreeChDirMode=2
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-" let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\~$']
-let NERDTreeShowBookmarks=1
-let NERDTreeWinPos = "right"
-
-" nerdcommenter
-let NERDSpaceDelims=1
-" nmap <D-/> :NERDComToggleComment<cr>
-let NERDCompactSexyComs=1
-
-" ZenCoding
-let g:user_emmet_expandabbr_key='<C-j>'
-
-
-" Minibuf shortcut mappings
-nnoremap <Leader>m <esc>:bp<CR>
-nnoremap <Leader>n <esc>:bn<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-" It's useful to show the buffer number in the status line. I use Minibuf
-" instead.
-" set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-
-" Map sort function to a key
-vnoremap <Leader>s :sort<CR>
-
-
-" Easier moving of code blocks
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
-
-
-" Show whitespace
-" INSERT BEFORE COLORSCHEME COMMAND
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertLeave * match ExtraWhitespace /\s\+$/
-
-
-" Color scheme
-" mkdir -p ~/.vim/colors && cd ~/.vim/colors
-" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
-set t_Co=256
-color wombat256mod
-
-
-" Enable filetype dectection and ft specific plugin/indent
-" You need to reload this file for the change to apply
-filetype off
-filetype plugin indent on
-
-" Enable syntax highlighting
-syntax on
-
-
-" Showing line numbers and length
-set number  " show line numbers
-set tw=79   " width of document (used by gd)
-set nowrap  " don't automatically wrap on load
-set fo-=t   " don't automatically wrap text when typing
-set colorcolumn=80
-highlight ColorColumn ctermbg=233
-
-
-" easier formatting of paragraphs
-vmap Q gq
-nmap Q gqap
-
-
-" Useful settings
-set history=700
-set undolevels=700
-set showmatch                       " show matching bracket (briefly jump)
-set matchpairs+=<:>                 " For HTML
-
-" Real programmers don't use TABs but spaces
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set shiftround
-
-
-
-" Make search case insensitive
-set hlsearch
-set incsearch
+" Ignore case when searching
 set ignorecase
+
+" When searching try to be smart about cases
 set smartcase
 
+" Highlight search results
+set hlsearch
 
-" Disable backup and swap files
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Add a bit extra margin to the left
+set foldcolumn=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+try
+    colorscheme desert
+catch
+endtry
+
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
-set nowritebackup
+set nowb
 set noswapfile
 
 
-" Setup pathogen to manage your plugins
-" execute pathogen#infect() " Time for Vundle :|
-" call pathogen#helptags()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 
 
-" ============================================================================
-"" Python IDE Setup
-" ============================================================================
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :bufdo bd<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+" autocmd BufReadPost *
+"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"      \   exe "normal! g`\"" |
+"      \ endif
+" Remember info about open buffers on close
+" set viminfo^=%
+
+
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
 set laststatus=2
 
-
-" Settings for ctrlp
-" cd ~/.vim/bundle
-" git clone https://github.com/kien/ctrlp.vim.git
-let g:ctrlp_max_height = 30
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 
-" Settings for python-mode
-" Note: I'm no longer using this. Leave this commented out
-" and uncomment the part about jedi-vim instead
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope_goto_def_newwin = "vnew"
-let g:pymode_rope_extended_complete = 1
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap VIM 0 to first non-blank character
+map 0 ^
 
-" Settings for jedi-vim
-" cd ~/.vim/bundle
-" git clone git://github.com/davidhalter/jedi-vim.git
-let g:jedi#related_names_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Better navigating through omnicomplete option list
-" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-" set completeopt=longest,menuone,preview
-" NeoComplCache
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_underbar_completion = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-set completeopt-=preview
-
-imap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_force_expand)
-imap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-smap <C-l> <Plug>(neocomplcache_snippets_force_jump)
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
-
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
 endif
 
-let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
-
-" SuperTab
-" let g:SuperTabDefultCompletionType='context'
-let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-let g:SuperTabRetainCompletionType=2
-
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable                           " disable folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ag searching and cope displaying
+"    requires ag.vim - it's much better than vimgrep/grep
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" When you press gv you Ag after the selected text
+vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
+" Open Ag and put the cursor in the right position
+map <leader>g :Ag
 
-"=========================================================================
-"" Toggle Mouse Plugin
-"=========================================================================
-" Toggle mouse plugin for quickly toggling mouse between Vim and terminal
-" Maintainer:   Vincent Driessen <vincent@datafox.nl>
-" Version:      Vim 7 (may work with lower Vim versions, but not tested)
-" URL:          http://github.com/nvie/vim-togglemouse
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+
+" Do :help cope if you are unsure what cope is. It's super useful!
 "
-" Only do this when not done yet for this buffer
-if exists("b:loaded_toggle_mouse_plugin")
-    finish
-endif
-let b:loaded_toggle_mouse_plugin = 1
+" When you search with Ag, display your results in cope by doing:
+"   <leader>cc
+"
+" To go to the next search result do:
+"   <leader>n
+"
+" To go to the previous search results do:
+"   <leader>p
+"
+map <leader>cc :botright cope<cr>
+map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
 
-fun! s:ToggleMouse()
-    if !exists("s:old_mouse")
-        let s:old_mouse = "a"
-    endif
 
-    if &mouse == ""
-        let &mouse = s:old_mouse
-        echo "Mouse is for Vim (" . &mouse . ")"
-    else
-        let s:old_mouse = &mouse
-        let &mouse=""
-        echo "Mouse is for terminal"
-    endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Quickly open a buffer for scribble
+map <leader>q :e ~/buffer<cr>
+
+" Quickly open a markdown buffer for scribble
+map <leader>x :e ~/buffer.md<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
 endfunction
 
-" Add mappings, unless the user didn't want this.
-" The default mapping is registered under to <F12> by default, unless the user
-" remapped it already (or a mapping exists already for <F12>)
-if !exists("no_plugin_maps") && !exists("no_toggle_mouse_maps")
-    if !hasmapto('<SID>ToggleMouse()')
-        noremap <F12> :call <SID>ToggleMouse()<CR>
-        inoremap <F12> <Esc>:call <SID>ToggleMouse()<CR>a
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("Ag \"" . l:pattern . "\" " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
     endif
-endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
+
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
